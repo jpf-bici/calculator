@@ -1,0 +1,52 @@
+body {
+  font-family: system-ui, Arial, sans-serif;
+  background: #f6f7f8;
+  padding: 24px;
+}
+
+.calc {
+  width: 320px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.screen {
+  min-height: 64px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 24px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+button {
+  padding: 12px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fafafa;
+  cursor: pointer;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.op {
+  background: #eef6ff;
+}
+
+.spacer {
+  visibility: hidden;
+}

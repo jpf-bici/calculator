@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Really Simple JS Calculator</title>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Math.js library (for expression evaluation) -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.11.0/lib/browser/math.js"></script>
+
+    <!-- Link to external JS file -->
+    <script defer src="script.js"></script>
+  </head>
+
+  <body>
+    <div class="calc" aria-label="Calculator">
+      <div id="screen" class="screen">0</div>
+      <div class="keys">
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <button id="clear">C</button>
+        <button class="op">/</button>
+
+        <button class="num">7</button>
+        <button class="num">8</button>
+        <button class="num">9</button>
+        <button class="op">*</button>
+
+        <button class="num">4</button>
+        <button class="num">5</button>
+        <button class="num">6</button>
+        <button class="op">-</button>
+
+        <button class="num">1</button>
+        <button class="num">2</button>
+        <button class="num">3</button>
+        <button class="op">+</button>
+
+        <button class="num">0</button>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <button id="equals">=</button>
+      </div>
+    </div>
+  </body>
+</html>
