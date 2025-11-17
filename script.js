@@ -1,4 +1,8 @@
+// =========================
+// STANDARD CALCULATOR SETUP
+// =========================
 // Plain JavaScript Calculator with math.evaluate()
+
 let expr = "";
 const screen = document.getElementById("screen");
 
@@ -8,7 +12,7 @@ function show() {
 
 function addDigit(d) {
   // runs whenever a number button is pressed
-  // after updating the internal expression, it calls the show() function 
+  // after updating the internal expression, it calls the show() function
   // which updates the visible calculator display
   expr += d;
   show();
@@ -64,3 +68,100 @@ window.addEventListener("keydown", (e) => {
 });
 
 show();
+
+// Initialize by showing the standard calculator
+// document.querySelector('.tab[data-panel="standard"]').click();
+
+// ======================
+// RPN CALCULATOR SETUP
+// ======================
+let rpnStack = [];
+let rpnCurrent = ""; // typing buffer
+
+const stackDiv = document.getElementById("rpn-stack");
+const inputDiv = document.getElementById("rpn-input");
+
+function updateRpnDisplay() {
+  stackDiv.textContent = rpnStack.join("\n");
+  inputDiv.textContent = rpnCurrent || "0";
+}
+
+// Add a digit to the current input
+function rpnAddDigit(d) {
+  rpnCurrent += d;
+  updateRpnDisplay();
+}
+
+// Enter: push current value onto stack
+function rpnEnter() {
+  if (rpnCurrent !== "") {
+    rpnStack.push(parseFloat(rpnCurrent));
+    rpnCurrent = "";
+  }
+  updateRpnDisplay();
+}
+
+// Drop: remove top item
+function rpnDrop() {
+  rpnStack.pop();
+  updateRpnDisplay();
+}
+
+// Clear everything
+function rpnClear() {
+  rpnStack = [];
+  rpnCurrent = "";
+  updateRpnDisplay();
+}
+
+// Operators: apply to top 2 items
+function rpnOperate(op) {
+  if (rpnStack.length < 2) return;
+
+  const b = rpnStack.pop();
+  const a = rpnStack.pop();
+
+  let result = 0;
+
+  if (op === "+") result = a + b;
+  if (op === "-") result = a - b;
+  if (op === "*") result = a * b;
+  if (op === "/") result = a / b;
+
+  rpnStack.push(result);
+  updateRpnDisplay();
+}
+
+// Attach listeners
+document.querySelectorAll(".rpn-num").forEach((btn) => {
+  btn.addEventListener("click", () => rpnAddDigit(btn.textContent));
+});
+
+document.querySelectorAll(".rpn-op").forEach((btn) => {
+  btn.addEventListener("click", () => rpnOperate(btn.textContent));
+});
+
+document.getElementById("rpn-enter").addEventListener("click", rpnEnter);
+document.getElementById("rpn-drop").addEventListener("click", rpnDrop);
+document.getElementById("rpn-clear").addEventListener("click", rpnClear);
+
+updateRpnDisplay();
+
+// ============================================
+// Event listener to switch between calculators
+// ============================================
+const tabs = document.querySelectorAll(".tab");
+const panels = document.querySelectorAll(".calc-panel");
+
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    // Deactivate all tabs and panels
+    tabs.forEach((t) => t.classList.remove("active"));
+    panels.forEach((p) => p.classList.remove("active"));
+
+    // Activate the clicked tab and corresponding panel
+    tab.classList.add("active");
+    const target = tab.dataset.target;
+    document.getElementById(target).classList.add("active");
+  });
+});
