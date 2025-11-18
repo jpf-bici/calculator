@@ -44,7 +44,7 @@ button:active {
 }
 
 .op {
-  background: #eef6ff;
+  /*background: #e7f4ff;*/ /* light blue tint */
 }
 
 .spacer {
@@ -56,13 +56,13 @@ button:active {
 }
 
 #clear {
-  background: #ffecec; /* soft red tint */
-  color: #b00000; /* dark red text */
+  /*
+  background: #e7f4ff;
+  */
 }
 
 #equals {
-  background: #e7f4ff; /* light blue tint */
-  font-weight: bold;
+  /*background: #e7f4ff;*/ /* light blue tint */
 }
 
 .tab-bar {
@@ -123,9 +123,13 @@ button:active {
   grid-row: span 2;
 }
 
+.rpn-op {
+  /*background: #e7f4ff;*/ /* light blue tint */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
 #rpn-clear {
-  background: #ffecec; /* soft red tint */
-  color: #b00000; /* dark red text */
   border: 1px solid #ccc;
   border-radius: 8px;
 }
