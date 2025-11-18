@@ -78,15 +78,22 @@ show();
 let rpnStack = [];
 let rpnCurrent = ""; // typing buffer
 
-const stackDiv = document.getElementById("rpn-stack");
-const inputDiv = document.getElementById("rpn-input");
+const rpnScreen = document.getElementById("rpn-screen");
 
 function updateRpnDisplay() {
-  stackDiv.textContent = rpnStack.join("\n");
-  inputDiv.textContent = rpnCurrent || "0";
+  let value = "0";
+
+  if (rpnCurrent !== "") {
+    value = rpnCurrent;
+  } else if (rpnStack.length > 0) {
+    value = rpnStack[rpnStack.length - 1];
+  } else {
+    value = "0";
+  }
+
+  rpnScreen.textContent = value;
 }
 
-// Add a digit to the current input
 function rpnAddDigit(d) {
   rpnCurrent += d;
   updateRpnDisplay();
@@ -101,12 +108,6 @@ function rpnEnter() {
   updateRpnDisplay();
 }
 
-// Drop: remove top item
-function rpnDrop() {
-  rpnStack.pop();
-  updateRpnDisplay();
-}
-
 // Clear everything
 function rpnClear() {
   rpnStack = [];
@@ -116,7 +117,21 @@ function rpnClear() {
 
 // Operators: apply to top 2 items
 function rpnOperate(op) {
-  if (rpnStack.length < 2) return;
+  //console.log("OPERATOR RECEIVED:", JSON.stringify(op));
+
+  op = op.trim();
+
+  // If user is typing, treat it as an implicit "Enter"
+  if (rpnCurrent !== "") {
+    rpnStack.push(parseFloat(rpnCurrent));
+    rpnCurrent = "";
+  }
+
+  // Need at least 2 values now
+  if (rpnStack.length < 2) {
+    updateRpnDisplay();
+    return;
+  }
 
   const b = rpnStack.pop();
   const a = rpnStack.pop();
@@ -142,7 +157,6 @@ document.querySelectorAll(".rpn-op").forEach((btn) => {
 });
 
 document.getElementById("rpn-enter").addEventListener("click", rpnEnter);
-document.getElementById("rpn-drop").addEventListener("click", rpnDrop);
 document.getElementById("rpn-clear").addEventListener("click", rpnClear);
 
 updateRpnDisplay();

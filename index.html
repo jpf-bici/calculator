@@ -28,7 +28,7 @@
 
     <!-- standard calculator -->
     <div id="standard" class="calc-panel active">
-      <div class="calc" aria-label="Calculator">
+      <div class="calc">
         <div id="screen" class="screen">0</div>
         <div class="keys">
           <div class="spacer"></div>
@@ -62,40 +62,37 @@
     <!-- rpn calculator -->
     <div id="rpn" class="calc-panel">
       <div class="calc rpn-calc">
-        <div class="rpn-screen">
-          <div id="rpn-stack"></div>
-          <div id="rpn-input" class="rpn-input">0</div>
-        </div>
-
+        <div id="rpn-screen" class="rpn-screen">0</div>
         <div class="keys rpn-keys">
           <!-- Row 1 -->
-          <button class="rpn-action" id="rpn-enter">Enter</button>
-          <button class="rpn-action" id="rpn-drop">Drop</button>
-          <button class="rpn-action" id="rpn-clear">Clear</button>
-          <div class="spacer"></div>
-
-          <!-- Row 2 -->
+          <!-- CHS button is now a Clear -->
+          <button id="rpn-clear" class="rpn-action">Clear</button>
           <button class="rpn-num">7</button>
           <button class="rpn-num">8</button>
           <button class="rpn-num">9</button>
-          <button class="rpn-op">*</button>
+          <button class="rpn-op">/</button>
 
-          <!-- Row 3 -->
+          <!-- Row 2 -->
+          <button class="placeholder"></button>
+          <!-- EEX placeholder -->
           <button class="rpn-num">4</button>
           <button class="rpn-num">5</button>
           <button class="rpn-num">6</button>
-          <button class="rpn-op">/</button>
+          <button class="rpn-op">*</button>
 
-          <!-- Row 4 -->
+          <!-- Row 3 -->
+          <button class="rpn-action enter" id="rpn-enter">Enter</button>
           <button class="rpn-num">1</button>
           <button class="rpn-num">2</button>
           <button class="rpn-num">3</button>
           <button class="rpn-op">-</button>
 
-          <!-- Row 5 -->
-          <button class="rpn-num wide">0</button>
-          <div class="spacer"></div>
-          <div class="spacer"></div>
+          <!-- Row 4 -->
+          <!-- Enter continues here automatically because it spans 2 rows -->
+          <button class="rpn-num wide-zero">0</button>
+          <button class="rpn-num">.</button>
+          <button class="placeholder"></button>
+          <!-- Σ placeholder -->
           <button class="rpn-op">+</button>
         </div>
       </div>

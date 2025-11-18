@@ -51,6 +51,10 @@ button:active {
   visibility: hidden;
 }
 
+.wide {
+  grid-column: span 2;
+}
+
 #clear {
   background: #ffecec; /* soft red tint */
   color: #b00000; /* dark red text */
@@ -92,23 +96,49 @@ button:active {
 }
 
 .rpn-screen {
+  min-height: 64px;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
-  background: #fafafa;
-  margin-bottom: 12px;
-}
-
-#rpn-stack {
-  min-height: 60px;
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 8px;
-  white-space: pre-line;
+  font-size: 24px;
+  text-align: right;
+  overflow-wrap: anywhere;
 }
 
 #rpn-input {
   font-size: 24px;
   text-align: right;
   padding: 6px 0;
+}
+
+/* HP 12C grid: 5 columns */
+.rpn-keys {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+/* Enter spans two rows */
+.enter {
+  grid-row: span 2;
+}
+
+#rpn-clear {
+  background: #ffecec; /* soft red tint */
+  color: #b00000; /* dark red text */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Placeholder keys (blank buttons) */
+.placeholder {
+  background: #eee; /* or match your calc theme */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  pointer-events: none; /* can’t be clicked */
+}
+
+/* Optional: make 0 key extra wide like HP 12C (spans 1 col, not 2) */
+.wide-zero {
+  grid-column: span 1;
 }
